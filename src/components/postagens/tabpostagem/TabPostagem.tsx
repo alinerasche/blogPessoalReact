@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
 import { AppBar, Box, Tab, Tabs, Typography } from '@material-ui/core'
 import { TabContext, TabPanel } from '@material-ui/lab'
-
 import ListaPostagem from '../listapostagem/ListaPostagem'
-
 import './TabPostagem.css';
 
 function TabPostagem() {
 
     const [value, setValue] = useState('1')
 
-    function handleChange(event: React.ChangeEvent<{}>, newValue: string){
+    function handleChange(event: React.ChangeEvent<{}>, newValue: string) {
         setValue(newValue)
     }
 
     return (
         <>
-            <TabContext value={ value }>
+            <TabContext value={value}>
 
                 <AppBar position="static">
-                    <Tabs centered indicatorColor="secondary" onChange={ handleChange }>
+                    <Tabs centered indicatorColor="secondary" onChange={handleChange}>
                         <Tab label="Todas as postagens" value="1" />
                         <Tab label="Sobre-nós" value="2" />
                     </Tabs>

@@ -1,10 +1,25 @@
-.cursor{
-    cursor: pointer;
-    color: white;
+.menu{
+    display:inline-block;
+    padding:30px;
+}
 
+.menu li a:hover { 
+    color: rgb(200, 200, 200);
+}
+
+
+.nav-color li a{
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    
 }
 
 .text-decorator-none{
-text-decoration: none;
+    text-decoration: none;
+}
 
+.cursor{
+    cursor: pointer;
+    color: white;
 }
