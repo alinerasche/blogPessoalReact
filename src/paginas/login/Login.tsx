@@ -2,19 +2,20 @@ import React, { ChangeEvent, useState, useEffect } from 'react'
 import { Box, Button, Grid, TextField, Typography } from '@material-ui/core'
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
-
 import { login } from '../../services/Service';
 import UserLogin from '../../models/UserLogin';
-
 import './Login.css';
+import { useDispatch } from 'react-redux';
+import { addToken } from '../../store/tokens/actions';
 
 function Login() {
 
     // redireciona o usuário para determinada pagina
     let history = useNavigate()
+    const dispatch = useDispatch();
 
     // hooks que vão manipular o nosso Local Storage para gravar o Token
-    const [token, setToken] = useLocalStorage('token')
+    const [token, setToken] = useState('')
 
     // useState define como uma determinada variavel será inicializada quando o Comp. for renderizado
     const [userLogin, setUserLogin] = useState<UserLogin>({
@@ -27,6 +28,7 @@ function Login() {
 
     useEffect(() => {
         if(token !== ""){
+            dispatch(addToken(token))
             history('/home')
         }
     }, [token])
