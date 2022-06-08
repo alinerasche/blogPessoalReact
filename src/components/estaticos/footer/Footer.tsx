@@ -1,55 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
-import { Provider, useSelector } from "react-redux";
-import store from "../../../store/store";
-import { Home, Login } from "@mui/icons-material";
-import CadastroUsuario from "../../../paginas/cadastroUsuario/CadastroUsuario";
-import ListaPostagem from "../../postagens/listapostagem/ListaPostagem";
-import DeletarPostagem from "../../postagens/deletarPostagem/DeletarPostagem";
-import CadastroPost from "../../postagens/cadastroPost/CadastroPost";
-import Navbar from "../navbar/Navbar";
-import CadastroTema from "../../temas/listatema/cadastroTema/CadastroTema";
-import DeletarTema from "../../temas/listatema/deletarTema/DeletarTema";
-import NotFoundPage from "../../../paginas/pageNotFound/PageNotFound";
-import { TokenState } from "../../../store/tokens/tokensReducer";
+import React from 'react';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import GithubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { Typography, Box, Grid } from '@material-ui/core';
+import './Footer.css';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
-function Footer() {
-    const token = useSelector<TokenState, TokenState["tokens"]>(
-      (state) => state.tokens
-    );
-  
-    var footerComponent;
-  
-    if (token != "") {
-      footerComponent = (
-    <Provider store={store}>
-      <Router>
-        <Navbar />
-        <div style={{ minHeight: "100vh" }}>
-          <Routes>
-            {/* // Antigo Switch */}
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/cadastrousuario" element={<CadastroUsuario />} />
-            <Route path="/posts" element={<ListaPostagem />} />
-            <Route path="/forumularioPostagem" element={<CadastroPost />} />
-            <Route path="/formularioPostagem/:id" element={<CadastroPost />} />
-            <Route path="/formularioTema" element={<CadastroTema />} />
-            <Route path="/formularioTema/:id" element={<CadastroTema />} />
-            <Route path="/deletarPostagem/:id" element={<DeletarPostagem />} />
-            <Route path="/deletarTema/:id" element={<DeletarTema />} />
-            <Route path="/*" element={<NotFoundPage />} />
-          </Routes>
-        </div>     
-        <Footer />
-        </Router>
-    </Provider>
+function Footer(): JSX.Element {
+
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
   );
-}
 
-return <>{footerComponent}</>;
+  var footerComponent;
+
+  if (token != "") {
+    footerComponent = <Grid className='footer-background' container direction="row" justifyContent="center" alignItems="center">
+      <Grid alignItems="center" item xs={12}>
+        <Box>
+          <Box className='txt' paddingTop={1} display="flex" alignItems="center" justifyContent="center">
+            {/* <Typography align="center" gutterBottom>
+            Siga-nos nas redes sociais </Typography> */}
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center" className='icons'>
+            <a href="https://www.instagram.com/aline.rasche/" target="_blank">
+              <InstagramIcon />
+            </a>
+            <a href="https://www.linkedin.com/in/aline-rasche-180673189/" target="_blank">
+              <LinkedInIcon />
+            </a>
+            <a href="https://github.com/alinerasche" target="_blank">
+              <GithubIcon />
+            </a>
+          </Box>
+        </Box>
+        <Box className='txt'>
+          <Box paddingTop={1}>
+            <Typography variant="subtitle2" align="center" gutterBottom>
+              © 2022 Copyright: Aline Rasche</Typography>
+          </Box>
+        </Box>
+      </Grid>
+    </Grid>
+  }
+  return (
+    <>
+      {footerComponent}
+    </>
+  )
 }
 
 export default Footer;
