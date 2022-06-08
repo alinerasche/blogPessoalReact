@@ -16,10 +16,13 @@ import CadastroTema from "./components/temas/listatema/cadastroTema/CadastroTema
 import store from "./store/store";
 import NotFoundPage from "./paginas/pageNotFound/PageNotFound";
 import ListaTema from "./components/temas/listatema/ListaTema";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Provider store={store}>
+      <ToastContainer />
     <Router>
       <Navbar />
       <div style={{ minHeight: '100vh' }}>

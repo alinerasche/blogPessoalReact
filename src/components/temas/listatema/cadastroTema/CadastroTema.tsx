@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import { buscaId, post, put } from "../../../../services/Service";
 import Tema from "../../../../models/Tema";
+import { toast } from "react-toastify";
 
 function CadastroTema() {
   let navigate = useNavigate();
@@ -16,8 +17,16 @@ function CadastroTema() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado para acessar essa página");
-      navigate("/login");
+      toast.error('Você precisa estar logado', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+      });      navigate("/login");
     }
   }, [token]);
 
@@ -54,7 +63,16 @@ function CadastroTema() {
             Authorization: token,
           },
         });
-        alert("Tema atualizado com sucesso");
+        toast.success('Tema atualizado com sucesso', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+        });      
       } catch (error) {
         console.log(`Error: ${error}`);
         alert("Erro, por favor verifique a quantidade minima de caracteres");
@@ -66,8 +84,16 @@ function CadastroTema() {
             Authorization: token,
           },
         });
-        alert("Tema cadastrado com sucesso");
-      } catch (error) {
+        toast.success('Tema cadastrado com sucesso', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+        });      } catch (error) {
         console.log(`Error: ${error}`);
         alert("Erro, por favor verifique a quantidade minima de caracteres");
       }

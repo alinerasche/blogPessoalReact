@@ -6,6 +6,7 @@ import { Grid, Typography, Button, TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "./CadastroUsuario.css";
 import { Box } from "@mui/system";
+import { toast } from "react-toastify";
 
 function CadastroUsuario() {
   let navigate = useNavigate();
@@ -46,15 +47,32 @@ function CadastroUsuario() {
       //Tenta executar o cadastro
       try {
         await cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult);
-        alert("Usuário cadastrado com sucesso");
+        toast.success('Usuário cadastrado com sucesso', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+          });
 
         //Caso tenha algo diferente do padrão solicitado ele mostra mensagem de erro
       } catch (error) {
         console.log(`Error: ${error}`);
 
         //Mensagem personalizada de acordo com o erro
-        alert("Erro existente");
-      }
+        toast.error('Dados inconsistentes. Favor verificar as informações de cadastro', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+          });      }
     } else {
       alert("Insira no miníno 8 caracteres na senha.");
 
